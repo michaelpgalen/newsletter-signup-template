@@ -31,23 +31,14 @@ app.post("/", function(req, res){
 
     console.log(req.body)
    
-    const url = "https://us8.api.mailchimp.com/3.0/lists/d51dba7d9c";
+    const url = "https://us8.api.mailchimp.com/3.0/lists/YOUR_LIST_ID";
     const options = {
         method: 'POST',
-        auth: "michaelpgalen:0e9862d0ec237354a6b7e286f7178a4d-us8"
+        auth: "YOUR-API-KEY"
     }
 
     const request = https.request(url, options, function(response){
-        // response.on('data', function(data){
-        //     console.log(JSON.parse(data))
-        // })
-
         console.log('status code: ' + response.statusCode)
-        // console.log('Response headers: ' + response.headers)
-
-        // response.on('error', function(error){
-        //     console.log("Error in Mailchimp response: " + error)
-        // })
 
         if (response.statusCode === 200) {
             res.sendFile(__dirname + "/success.html")
@@ -66,7 +57,3 @@ app.post("/failure", function(req,res){
 
 
 app.listen(process.env.PORT || 3000, console.log("Server running"));
-
-// Mailchimp api key
-// 0e9862d0ec237354a6b7e286f7178a4d-us8
-// audience ID: d51dba7d9c
